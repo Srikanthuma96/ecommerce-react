@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
+import Home from './Components/Home';
+import Cart from './Components/Cart';
+import Contact from './Components/Contact';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+import { CartProvider } from './CartContext';
 
-function App() {
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CartProvider>
+      
+
+      <Routes>
+        <Route path="/" element={<Home searchTerm={searchTerm} />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+
+      {/*  Footer shown on all pages */}
+      <Footer />
+    </CartProvider>
   );
-}
+};
 
 export default App;
