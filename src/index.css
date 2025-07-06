@@ -838,14 +838,14 @@ display: flex;
 justify-content: center;
 align-items: center;
   border: none;
-  background: #f0f0f0;
+  background: #133dc6;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .quantity-controls button:hover {
-  background: #ddd;
+  background: #9f1a1a;
 }
 
 .remove-btn {
