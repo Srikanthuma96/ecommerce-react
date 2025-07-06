@@ -640,6 +640,7 @@ a {
   font-size: 18px;
   background-color: #007bff;
   border: none;
+  text-align: center;
   border-radius: 5px;
   color: white;
   cursor: pointer;
@@ -652,6 +653,7 @@ a {
 .qty-count {
   font-size: 18px;
   font-weight: bold;
+  
 }
 
 
@@ -832,6 +834,9 @@ a {
   width: 35px;
   height: 35px;
   font-size: 24px;
+display: flex;
+justify-content: center;
+align-items: center;
   border: none;
   background: #f0f0f0;
   border-radius: 6px;
