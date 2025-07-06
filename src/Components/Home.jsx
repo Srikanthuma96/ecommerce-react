@@ -8,6 +8,7 @@ import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../CartContext";
 
+
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isProductsEmpty, setIsProductsEmpty] = useState(false);

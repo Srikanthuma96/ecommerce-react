@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "../CartContext";
 
+
 const Homeproducts = ({ searchTerm = "", onEmpty }) => {
   const { cartItems, addToCart, incrementQuantity, decrementQuantity } = useContext(CartContext);
   const [showPopup, setShowPopup] = useState(false);

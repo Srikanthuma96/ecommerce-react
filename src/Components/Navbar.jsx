@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../Assets/Srikanth-removebg-preview.png';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { useContext } from 'react';
 import { CartContext } from '../CartContext';
 
-
 const Navbar = ({ searchTerm, setSearchTerm }) => {
+  const { cartItems } = useContext(CartContext);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -14,11 +15,6 @@ const Navbar = ({ searchTerm, setSearchTerm }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
-  const { cartItems } = useContext(CartContext);
-
-const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-
 
   return (
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#75bdf0' }}>
@@ -29,19 +25,7 @@ const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
           <img src={logo} alt="Logo" width="100" />
         </NavLink>
 
-        {/* Search (Mobile) */}
-        <form className="d-flex d-lg-none flex-grow-1 me-2" role="search" onSubmit={handleSubmit}>
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search"
-            value={searchTerm}
-            onChange={handleInputChange}
-          />
-          <button className="btn btn-outline-dark" type="submit">Search</button>
-        </form>
-
-        {/* Toggle */}
+        {/* Toggle for small screens */}
         <button
           className="navbar-toggler"
           type="button"
@@ -54,19 +38,43 @@ const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Collapsible */}
+        {/* Collapsible content */}
         <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
 
-          {/* Search (Desktop) */}
-          <form className="d-none d-lg-flex mx-auto" style={{ width: '50%' }} role="search" onSubmit={handleSubmit}>
+          {/* Search Bar (Desktop only) */}
+          <form
+            className="d-none d-lg-flex mx-auto"
+            style={{ width: '60%' }}
+            role="search"
+            onSubmit={handleSubmit}
+          >
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search the products"
               value={searchTerm}
               onChange={handleInputChange}
+              style={{
+                borderRadius: '12px',
+                padding: '10px 20px',
+                backgroundColor: '#fff',
+                border: 'none',
+                boxShadow: '0 0 5px rgba(0,0,0,0.2)',
+                flex: 1
+              }}
             />
-            <button className="btn btn-outline-dark" type="submit">Search</button>
+            <button
+              className="btn btn-outline-dark"
+              type="submit"
+              style={{
+                padding: '6px 14px',
+                fontSize: '14px',
+                borderRadius: '8px',
+                width:'74px',
+              }}
+            >
+              Search
+            </button>
           </form>
 
           {/* Navigation Links */}
@@ -76,17 +84,16 @@ const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
                 <i className="bi bi-house-door-fill me-1"></i> Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/Cart" className="nav-link nav-animate text-dark position-relative">
-  <i className="bi bi-cart-fill me-1"></i> Cart
-  {totalItems > 0 && (
-    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-      {totalItems}
-    </span>
-  )}
-</NavLink>
 
+            <li className="nav-item position-relative">
+              <NavLink to="/Cart" className="nav-link nav-animate text-dark position-relative">
+                <i className="bi bi-cart-fill me-1"></i> Cart
+                {totalItems > 0 && (
+                  <span className="cart-badge">{totalItems}</span>
+                )}
+              </NavLink>
             </li>
+
             <li className="nav-item">
               <NavLink to="/Contact" className="nav-link nav-animate text-dark">
                 <i className="bi bi-telephone-fill me-1"></i> Contact us

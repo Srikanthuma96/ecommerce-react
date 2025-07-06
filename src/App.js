@@ -7,7 +7,9 @@ import Cart from './Components/Cart';
 import Contact from './Components/Contact';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import ForgotPassword from './Components/ForgotPassword';
 import { CartProvider } from './CartContext';
+
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,6 +22,7 @@ const App = () => {
         <Route path="/" element={<Home searchTerm={searchTerm} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
       </Routes>
